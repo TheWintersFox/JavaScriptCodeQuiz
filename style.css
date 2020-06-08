@@ -28,7 +28,7 @@ body.correct {
 }
 
 body.wrong {
-    --hue var(--hue-wrong);
+    --hue: var(--hue-wrong);
 }
 
 .container {
