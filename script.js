@@ -59,8 +59,8 @@ function resetState() {
     }
 }
 
-function selectAnswer() {
-    const selectedButton = e.traget
+function selectAnswer(e) {
+    const selectedButton = e.target
     const correct = selectedButton.dataset.correct
     setStatusClass(document.body, correct)
     Array.from(answerButtonsElement.children).forEach(button => {
