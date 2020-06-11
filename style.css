@@ -11,7 +11,7 @@
     --hue-correct: 145;
 }
 
-body {
+main {
     --hue: var(--hue-neutral);
     padding: 0;
     margin: 0;
@@ -23,11 +23,11 @@ body {
     background-color: hsl(var(--hue), 100%, 20%);
 }
 
-body.correct {
+main.correct {
     --hue: var(--hue-correct);
 }
 
-body.wrong {
+main.wrong {
     --hue: var(--hue-wrong);
 }
 

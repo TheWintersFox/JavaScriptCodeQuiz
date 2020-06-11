@@ -16,9 +16,14 @@ const questions = [{
 }]
 
 
-
-
-startButton.addEventListener('click', startGame)
+//START BUTTON
+startButton.addEventListener("click", function (event) {
+    event.preventDefault();
+    //Start Timer
+    startTimer();
+    //Start Questions
+    startGame();
+  });
 
 
 
@@ -52,13 +57,6 @@ function showQuestion(question) {
 
 }
 
-function resetState() {
-    nextButton.classList.add('hide')
-    while (answerButtonsElement.firstChild) {
-        answerButtonsElement.removeChild(answerButtonsElement.firstChild)
-    }
-}
-
 function selectAnswer(e) {
     const selectedButton = e.target
     const correct = selectedButton.dataset.correct
@@ -81,3 +79,38 @@ function clearStatusClass(element) {
     element.classList.remove('correct')
     element.classList.remove('wrong')
 }
+
+function resetState() {
+    nextButton.classList.add('hide')
+    while (answerButtonsElement.firstChild) {
+        answerButtonsElement.removeChild(answerButtonsElement.firstChild)
+    }
+}
+
+
+// Timer For the quiz
+
+var timer = document.querySelector("#time");
+
+var secondsLeft = 75;
+
+//TIMER FUNCTION
+function time() {
+    
+    secondsLeft--;
+    
+    if(secondsLeft <= 0) {
+      secondsLeft = 0;
+    }
+
+    timer.textContent = secondsLeft;
+
+  };
+
+//START TIMER FUNCTION
+function startTimer(){
+    let timerInterval = setInterval(time, 1000);
+}
+
+
+
