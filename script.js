@@ -1,3 +1,4 @@
+//HTML elements
 const startButton = document.getElementById('start-btn')
 const nextButton = document.getElementById('next-btn')
 const questionContainerElement = document.getElementById('question-container')
@@ -5,7 +6,7 @@ const questionElement = document.getElementById('question')
 const answerButtonsElement = document.getElementById('answer-buttons')
 const h1TextElement = document.getElementById('H1')
 
-
+//Random Shuffling of questions
 let shuffledQuestions, currentQuestionIndex
 
 
@@ -65,28 +66,30 @@ startButton.addEventListener('click', function (event) {
     startTimer();
     //Start Questions
     startGame();
-    setNextQuestion()
+    //Allow next Question after initial choice
+    displayNextQuestion()
 
 });
 
 
-
+//Start Game Function w/ Question array random shuffle
 function startGame() {
     startButton.classList.add('hide');
     shuffledQuestions = questions.sort(() => Math.random() - .5)
     currentQuestionIndex = 0
     questionContainerElement.classList.remove('hide');
     h1TextElement.innerText = ""
-    setNextQuestion()
+    displayNextQuestion()
 
 }
 
-function setNextQuestion() {
+function displayNextQuestion() {
     resetState()
     showQuestion(shuffledQuestions[currentQuestionIndex])
 
 }
 
+// Show question w/ a create element for each question
 function showQuestion(question) {
     questionElement.innerText = question.question
     question.answers.forEach(answer => {
@@ -102,6 +105,8 @@ function showQuestion(question) {
 
 }
 
+
+// Selection function
 function selectAnswer(e) {
     const selectedButton = e.target
     const correct = selectedButton.dataset.correct
@@ -109,11 +114,12 @@ function selectAnswer(e) {
     Array.from(answerButtonsElement.children).forEach(button => {
         setStatusClass(button, button.dataset.correct)
     })
-    // verify the
+    // add 1 to the current selection to rotate to the next question
     currentQuestionIndex++
+    // verify the current question that we're on 
    setTimeout(function () {
         if (shuffledQuestions.length > currentQuestionIndex) {
-            setNextQuestion()
+            displayNextQuestion()
         } else {
             startButton.innertext = "Restart"
             startButton.classList.remove('hide')
@@ -121,6 +127,8 @@ function selectAnswer(e) {
   }, 1000)
 }
 
+// set class to correct dependent on question boolean if not correct, then false
+// This section also loops to the CS hue values for background as well as button backgrounds to reveal correct answer or wrong answers
 function setStatusClass(element, correct) {
     clearStatusClass(element)
     if (correct) {
@@ -131,6 +139,7 @@ function setStatusClass(element, correct) {
 
 }
 
+// Remove the status from the button after selection for the new questions
 function clearStatusClass(element) {
     element.classList.remove('correct')
     element.classList.remove('wrong')
@@ -144,7 +153,7 @@ function resetState() {
 }
 
 
-// Timer For the quiz
+// TIMER FOR THE QUIZ
 
 var timer = document.querySelector("#time");
 
@@ -167,6 +176,3 @@ function time() {
 function startTimer() {
     let timerInterval = setInterval(time, 1000);
 }
-
-
-
