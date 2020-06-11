@@ -15,7 +15,6 @@ body {
     --hue: var(--hue-neutral);
     padding: 0;
     margin: 0;
-    display: flex;
     width: 100vw;
     height: 100vh;
     justify-content: center;
@@ -36,6 +35,7 @@ body.wrong {
     padding: 10px;
     background-color: white;
     box-shadow: 0 0 10px 2px;
+    clear:both;
 }
 
 .btn {
@@ -80,4 +80,12 @@ body.wrong {
 
 .hide {
     display: none;
+}
+
+#gotoscores{
+    float: left;
+}
+
+#time{
+    float: right;
 }
