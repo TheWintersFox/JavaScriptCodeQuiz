@@ -7,17 +7,57 @@ const answerButtonsElement = document.getElementById('answer-buttons')
 
 let shuffledQuestions, currentQuestionIndex
 
-const questions = [{
-    question: 'What is 2 + 2',
-    answers: [
-        { text: '4', correct: true },
-        { text: '22', correct: false }
-    ]
-}]
 
+// Questions Array
+const questions = [{
+    question: 'What is the model of the first broom Harry ever receives?',
+    answers: [
+        { text: 'Nimbus 2000', correct: true },
+        { text: 'Cleansweep One', correct: false },
+        { text: 'Hoover', correct: false },
+        { text: 'Firebolt', correct: false }
+    ]
+},
+{
+    question: 'How does Harry manage to breathe underwater during the second task of the Triwizard Tournament?',
+    answers: [
+        { text: 'He transfigures into a shark', correct: false},
+        { text: 'He kisses a mermaid', correct: false },
+        { text: 'He eats gillyweed', correct: true},
+        { text: 'He performs a bubble-head charm', correct: false}
+    ]
+},
+{ 
+    question: 'What is the name of Fred and George’s joke shop?',
+    answers: [
+        { text: 'Weasley Joke Emporium', correct: false},
+        { text: 'Weasleys Wizard Wheezes', correct: true},
+        { text: 'Fred & Georges Wonder Emporium', correct: false},
+        { text: 'Zonkos Joke Shop', correct: false}
+    ]
+},
+{
+    question: 'Which of these is NOT one of the Unforgivable Curses?',
+    answers: [
+        { text: 'Cruciatus Curse', correct: false},
+        { text: 'Imperius Curse', correct: false},
+        { text: 'Sectumsempra', correct: true},
+        { text: 'Avada Kedavra', correct: false}
+    ]
+},
+{
+    question: 'Where does Hermione brew her first batch of Polyjuice Potion?',
+    answers: [
+        { text: 'Moaning Myrtle’s Bathroom', correct: true},
+        { text: 'The Hogwarts Kitchen', correct: false},
+        { text: 'The Room of Requirement', correct: false},
+        { text: 'The Gryffindor Common Room', correct: false}
+    ]
+}
+]
 
 //START BUTTON
-startButton.addEventListener("click", function (event) {
+startButton.addEventListener('click',  function (event) {
     event.preventDefault();
     //Start Timer
     startTimer();
@@ -92,7 +132,7 @@ function resetState() {
 
 var timer = document.querySelector("#time");
 
-var secondsLeft = 75;
+let secondsLeft = 75;
 
 //TIMER FUNCTION
 function time() {
