@@ -33,6 +33,7 @@ body.wrong {
 .container {
     border-radius: 5px;
     padding: 10px;
+    justify-content: center;
     background-color: white;
     box-shadow: 0 0 10px 2px;
     clear:both;
@@ -59,10 +60,12 @@ body.wrong {
 .btn.correct {
     --hue: var(--hue-correct);
     color: black;
+    background-color: green;
 }
 
 .btn.wrong {
     --hue: var(--hue-wrong);
+    background-color: red;
 }
 
 .start-btn,
@@ -88,4 +91,15 @@ body.wrong {
 
 #time{
     float: right;
+    background-color: blue;
+    border: thick;
+    margin: 10px;
+    margin-top:10px;
+    font-size:40px;
+}
+
+#question{
+    font-size: large;
+    justify-content: center;
+    text-align: center;
 }
