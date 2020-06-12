@@ -9,21 +9,12 @@ body {
     background-color: lightblue;
 }
 
-body.correct {
-    background-color: green;
-}
-
-body.wrong {
-    background-color: red;
-}
-
 .container {
     margin-top: 250px;
     border-radius: 5px;
     padding: 10px;
     justify-content: center;
     background-color: white;
-    box-shadow: 0 0 10px 2px;
     clear:both;
 }
 

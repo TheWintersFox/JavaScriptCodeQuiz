@@ -9,51 +9,58 @@ const h1TextElement = document.getElementById('H1')
 let shuffledQuestions, currentQuestionIndex
 let secondsLeft = 75;
 
+
 // Questions Array
 const questions = [{
     question: 'What is the model of the first broom Harry ever receives?',
     answers: [
-        { text: 'Nimbus 2000', correct: true },
-        { text: 'Cleansweep One', correct: false },
-        { text: 'Hoover', correct: false },
-        { text: 'Firebolt', correct: false }
-    ]
+         'Nimbus 2000',
+         'Cleansweep One',
+         'Hoover',
+         'Firebolt',
+    ],
+    correctAnswer: 'Nimbus 2000',
 },
 {
     question: 'How does Harry manage to breathe underwater during the second task of the Triwizard Tournament?',
     answers: [
-        { text: 'He transfigures into a shark', correct: false },
-        { text: 'He kisses a mermaid', correct: false },
-        { text: 'He eats gillyweed', correct: true },
-        { text: 'He performs a bubble-head charm', correct: false }
-    ]
+         'He transfigures into a shark',
+          'He kisses a mermaid',
+         'He eats gillyweed',
+         'He performs a bubble-head charm',
+    ],
+    correctAnswer: 'He eats gillyweed'
 },
 {
     question: 'What is the name of Fred and George’s joke shop?',
     answers: [
-        { text: 'Weasley Joke Emporium', correct: false },
-        { text: 'Weasleys Wizard Wheezes', correct: true },
-        { text: 'Fred & Georges Wonder Emporium', correct: false },
-        { text: 'Zonkos Joke Shop', correct: false }
-    ]
+         'Weasley Joke Emporium',
+         'Weasleys Wizard Wheezes',
+         'Fred & Georges Wonder Emporium',
+         'Zonkos Joke Shop'
+    ],
+    correctAnswer: 'Weasleys Wizard Wheezes',
 },
 {
     question: 'Which of these is NOT one of the Unforgivable Curses?',
     answers: [
-        { text: 'Cruciatus Curse', correct: false },
-        { text: 'Imperius Curse', correct: false },
-        { text: 'Sectumsempra', correct: true },
-        { text: 'Avada Kedavra', correct: false }
-    ]
+        'Cruciatus Curse', 
+        'Imperius Curse', 
+        'Sectumsempra', 
+        'Avada Kedavra',
+    ],
+    correctAnswer: 'Sectumsempra',
 },
 {
     question: 'Where does Hermione brew her first batch of Polyjuice Potion?',
     answers: [
-        { text: 'Moaning Myrtle’s Bathroom', correct: true },
-        { text: 'The Hogwarts Kitchen', correct: false },
-        { text: 'The Room of Requirement', correct: false },
-        { text: 'The Gryffindor Common Room', correct: false }
-    ]
+        'Moaning Myrtle’s Bathroom',
+        'The Hogwarts Kitchen',
+        'The Room of Requirement',
+        'The Gryffindor Common Room',   
+         
+    ],
+    correctAnswer: 'Moaning Myrtle’s Bathroom',  
 }
 ]
 
@@ -61,10 +68,15 @@ const questions = [{
 startButton.addEventListener('click', function (event) {
     currentQuestionIndex++
     event.preventDefault();
+
     //Start Timer
     startTimer();
+
+    startQuiz.style.display = "none";
+
     //Start Questions
     startGame();
+
     //Allow next Question after initial choice
     displayNextQuestion()
 
@@ -85,7 +97,6 @@ function time() {
     }
 
     timer.textContent = secondsLeft;
-
 };
 
 //START TIMER FUNCTION
@@ -93,7 +104,19 @@ function startTimer() {
     let timerInterval = setInterval(time, 1000);
 }
 
-
 //Start Game Function w/ Question array random shuffle
+function startGame() {
+    startButton.classList.add('hide');
+    shuffledQuestions = questions.sort(() => Math.random() - .5)
+    currentQuestionIndex = 0
+    questionContainerElement.classList.remove('hide');
+    h1TextElement.innerText = ""
+    displayNextQuestion()
 
+}
 
+function displayNextQuestion() {
+    resetState()
+    showQuestion(shuffledQuestions[currentQuestionIndex])
+
+}
