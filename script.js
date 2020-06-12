@@ -10,7 +10,7 @@ const h1TextElement = document.getElementById('H1')
 let shuffledQuestions;
 let secondsLeft = 75;
 let currentQuestionIndex = 0;
-let checkAnswerDisplay = document.createElement ('p');
+let checkAnswerDisplay = document.createElement('p');
 
 // Questions Array
 const questions = [{
@@ -69,7 +69,7 @@ const questions = [{
 
 //START BUTTON
 startButton.addEventListener('click', function (event) {
-    currentQuestionIndex++;
+    //   currentQuestionIndex++;
     event.preventDefault();
 
     //Hide Start Display
@@ -134,10 +134,10 @@ function showQuestion(question) {
         const button = document.createElement('button')
         button.innerText = answer
         button.classList.add('btn')
-        if (answer.correct) {
-            button.dataset.correct = answer.correct
-        }
-        button.onclick = setStatusClass;
+        // if (answer.correct) {
+        //     button.dataset.correct = answer.correct
+        // }
+        //  button.onclick = setStatusClass;
         button.addEventListener('click', selectAnswer)
         answerButtonsElement.appendChild(button)
     })
@@ -145,9 +145,10 @@ function showQuestion(question) {
 
 
 //This will check the selected choice then display correct or incorrect below the answers area.
-function checkAnswer() {
-    if (this.value !== questions[shuffledQuestions].correctAnswer) {
-        console.log(this.value);
+function checkAnswer(response) {
+    console.log(response)
+    if (response !== questions[currentQuestionIndex].correctAnswer) {
+        console.log("WRONG")
         checkAnswerDisplay.textContent = "Incorrect";
         checkAnswerDisplay.style.textAlign = "left";
         answerCheck.appendChild(checkAnswerDisplay);
@@ -159,26 +160,27 @@ function checkAnswer() {
             endQuiz();
         }
     } else {
+        console.log("CORRECT")
         checkAnswerDisplay.textContent = "Correct";
         checkAnswerDisplay.style.textAlign = "left";
         answerCheck.appendChild(checkAnswerDisplay);
     }
-    shuffledQuestions++;
-    if (shuffledQuestions === questions.length) {
-        endQuizPlaceHolder();
-    }
-    showQuestion();
+
+
+
+    // if (shuffledQuestions === questions.length) {
+    //     endQuizPlaceHolder();
+    // }
+    // showQuestion();
 }
 
 
 //Selection function
 function selectAnswer(e) {
-    const selectedButton = e.target
-    const correct = selectedButton.dataset.correct
-    setStatusClass(document.body, correct)
-    Array.from(answerButtonsElement.children).forEach(button => {
-        setStatusClass(button, button.dataset.correct)
-    })
+    const selectedButton = e.target.innerText
+    console.log(selectedButton)
+
+    checkAnswer(selectedButton)
     // add 1 to the current selection to rotate to the next question
     currentQuestionIndex++
     // verify the current question that we're on 
@@ -209,10 +211,6 @@ function setStatusClass(element, correct) {
 }
 
 //Remove the status from the button after selection for the new questions
-function clearStatusClass(element) {
-    element.classList.remove('correct')
-    element.classList.remove('wrong')
-}
 
 function resetState() {
     while (answerButtonsElement.firstChild) {
