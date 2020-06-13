@@ -16,16 +16,15 @@ let user = [];
 let scoreArray = localStorage.getItem('highscore');
 if (scoreArray) {
     scoreArray = JSON.parse(scoreArray);
-    else {
-        scoreArray = [];
-    }
+    // else {
+    //     scoreArray = [];
+    // }
 }
 
 
 let secondsLeft = 75; //Starting time
 let currentQuestionIndex = 0; // Starting index at 0
 let checkAnswerDisplay = document.createElement('p');
-
 
 
 // Questions Array
@@ -160,12 +159,6 @@ function showQuestion(question) {
     })
 }
 
-// if (shuffledQuestions === questions.length) {
-//     endQuizPlaceHolder();
-// }
-// showQuestion();
-//}
-
 //Selection function
 function selectAnswer(e) {
     const selectedButton = e.target.innerText;
@@ -227,6 +220,8 @@ function checkAnswer(response) {
         answerCheck.appendChild(checkAnswerDisplay);
     }
 }
+
+
 //Remove the status from the button after selection for the new questions
 
 function resetState() {
@@ -234,6 +229,7 @@ function resetState() {
         answerButtonsElement.removeChild(answerButtonsElement.firstChild);
     }
 }
+
 
 // EndQUIZ WIP
 function endQuiz() {
