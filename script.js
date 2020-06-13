@@ -83,7 +83,7 @@ startButton.addEventListener('click', function (event) {
     startGame();
 
     //Allow next Question after initial choice
-    // displayNextQuestion()
+    displayNextQuestion()
 
 });
 
@@ -160,7 +160,7 @@ function selectAnswer(e) {
     currentQuestionIndex++
     // verify the current question that we're on 
     setTimeout(function () {
-        if (shuffledQuestions.length > currentQuestionIndex + 1) {
+        if (shuffledQuestions.length > currentQuestionIndex) {
             displayNextQuestion()
         } else {
             startButton.classList.remove('hide')
