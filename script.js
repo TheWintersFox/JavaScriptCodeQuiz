@@ -242,7 +242,6 @@ function endQuiz() {
 
     /* Hide quiz instructions and start button as well as the questions and answers 
     - including the incorrect or correct display at the buttom of the page*/
-    quizHeader.style.display = "none";
     startDisplay.style.display = "none";
     qa.style.display = "none";
     answerCheck.style.display = "none";
@@ -320,7 +319,6 @@ the seconds left on the timer when the quiz ends. */
 function highscoresDisplay() {
     /* Hide quiz instructions and start button as well as the questions and answers 
    and the Highscore input diplay page*/
-    quizHeader.style.display = "none";
     startDisplay.style.display = "none";
     qa.style.display = "none";
     highscoreContent.style.display = "none";
