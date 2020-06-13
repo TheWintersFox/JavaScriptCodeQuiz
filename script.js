@@ -313,11 +313,7 @@ highscoreButton.onclick = function(event) {
 /*Inputs are displayed after inputs are collected. Intials and highscore displayed. Score displayed is equivalent to 
 the seconds left on the timer when the quiz ends. */
 function highscoresDisplay() {
-    /* Hide quiz instructions and start button as well as the questions and answers 
-   and the Highscore input diplay page*/
-    startDisplay.style.display = "none";
-    qa.style.display = "none";
-    highscoreContent.style.display = "none";
+
     //Creates "Highscore" Header and collects data for localStorage
     const highscoreHeader = document.createElement("h1");
     const highscoreHeaderText = document.createTextNode("Highscores");
