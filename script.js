@@ -1,6 +1,6 @@
 //HTML elements
 const startButton = document.getElementById('startBtn');
-const questionContainerElement = document.getElementById('question-container');
+const questionContainerElement = document.getElementById('questionContainer');
 const questionElement = document.getElementById('question');
 const answerButtonsElement = document.getElementById('answer-buttons');
 const h1TextElement = document.getElementById('H1');
@@ -92,7 +92,7 @@ startButton.addEventListener('click', function(event) {
     startGame();
 
     //Allow next Question after initial choice
-    displayNextQuestion()
+    // displayNextQuestion()
 
 });
 
@@ -150,10 +150,10 @@ function showQuestion(question) {
         const button = document.createElement('button');
         button.innerText = answer;
         button.classList.add('btn');
-        // if (answer.correct) {
-        //     button.dataset.correct = answer.correct
-        // }
-        //  button.onclick = setStatusClass;
+        if (answer.correct) {
+            button.dataset.correct = answer.correct
+        }
+        button.onclick = setStatusClass;
         button.addEventListener('click', selectAnswer);
         answerButtonsElement.appendChild(button);
     })
@@ -190,7 +190,6 @@ function setStatusClass(element, correct) {
         secondsLeft = currenttime - 10
         element.classList.add('wrong')
     }
-
 }
 
 //This will check the selected choice then display correct or incorrect below the answers area.
@@ -221,7 +220,6 @@ function checkAnswer(response) {
     }
 }
 
-
 //Remove the status from the button after selection for the new questions
 
 function resetState() {
@@ -230,7 +228,6 @@ function resetState() {
     }
 }
 
-
 // EndQUIZ WIP
 function endQuiz() {
     //Function stops timer once time is logged as the score.
@@ -238,8 +235,8 @@ function endQuiz() {
 
     /* Hide quiz instructions and start button as well as the questions and answers 
     - including the incorrect or correct display at the buttom of the page*/
-    startDisplay.style.display = "none";
-    qa.style.display = "none";
+    startQuizz.style.display = "none";
+    questionContainer.style.display = "none";
     answerCheck.style.display = "none";
 
     //HIGHSCORE LOCAL VARIABLES

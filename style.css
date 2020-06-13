@@ -35,16 +35,15 @@ body {
     border-color: black;
 }
 
-.btn.correct {
+.correct {
     background-color: green;
 }
 
-.btn.wrong {
+.wrong {
     background-color: red;
 }
 
-.start-btn,
-.next-btn {
+.start-btn {
     font-size: 1.5rem;
     font-weight: bold;
     padding: 10px 20px;
