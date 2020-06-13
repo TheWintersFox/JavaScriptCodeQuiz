@@ -14,7 +14,7 @@ The challenge for the user is to enter in the most correct answers before the ti
  
  The highscore sheet uses local web storage API whilst using javascript to achieve this.  Subtract time when submitting wrong answers. 
 
-![alt text](./assets/images/harrypotter.png)
+![Deployed Application Screenshot](./assets/images/harrypotter.png)
 
 -------
 

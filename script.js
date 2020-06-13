@@ -151,7 +151,9 @@ function checkAnswer(response) {
     if (response !== questions[currentQuestionIndex].correctAnswer) {
         console.log("WRONG")
         checkAnswerDisplay.textContent = "Incorrect";
-        checkAnswerDisplay.style.textAlign = "left";
+        checkAnswerDisplay.style.textAlign = "center";
+        checkAnswerDisplay.style.backgroundColor = "red";
+        checkAnswerDisplay.style.color = "white";
         answerCheck.appendChild(checkAnswerDisplay);
         secondsLeft = secondsLeft - 10; //Time deduction
         console.log(secondsLeft); //Test
@@ -163,7 +165,9 @@ function checkAnswer(response) {
     } else {
         console.log("CORRECT")
         checkAnswerDisplay.textContent = "Correct";
-        checkAnswerDisplay.style.textAlign = "left";
+        checkAnswerDisplay.style.textAlign = "center";
+        checkAnswerDisplay.style.backgroundColor = "green";
+        checkAnswerDisplay.style.color = "white";
         answerCheck.appendChild(checkAnswerDisplay);
     }
 
