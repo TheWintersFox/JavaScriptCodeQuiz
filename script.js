@@ -144,6 +144,45 @@ function showQuestion(question) {
     })
 }
 
+// if (shuffledQuestions === questions.length) {
+//     endQuizPlaceHolder();
+// }
+// showQuestion();
+//}
+
+//Selection function
+function selectAnswer(e) {
+    const selectedButton = e.target.innerText
+    console.log(selectedButton)
+
+    checkAnswer(selectedButton)
+    // add 1 to the current selection to rotate to the next question
+    currentQuestionIndex++
+    // verify the current question that we're on 
+    setTimeout(function () {
+        if (shuffledQuestions.length > currentQuestionIndex + 1) {
+            displayNextQuestion()
+        } else {
+            startButton.classList.remove('hide')
+        }
+    }, 1000)
+}
+
+//set class to correct dependent on question boolean if not correct, then false
+//This section also loops to the CS hue values for button backgrounds to reveal correct answer or wrong answers
+function setStatusClass(element, correct) {
+    clearStatusClass(element)
+    if (correct) {
+        element.classList.add('correct')
+    } else {
+        //Grab current time and subtract 10 to reinsert
+
+        let currenttime = parseInt(timer.textContent)
+        secondsLeft = currenttime - 10
+        element.classList.add('wrong')
+    }
+
+}
 
 //This will check the selected choice then display correct or incorrect below the answers area.
 function checkAnswer(response) {
@@ -170,51 +209,7 @@ function checkAnswer(response) {
         checkAnswerDisplay.style.color = "white";
         answerCheck.appendChild(checkAnswerDisplay);
     }
-
-
-
-    // if (shuffledQuestions === questions.length) {
-    //     endQuizPlaceHolder();
-    // }
-    // showQuestion();
 }
-
-
-//Selection function
-function selectAnswer(e) {
-    const selectedButton = e.target.innerText
-    console.log(selectedButton)
-
-    checkAnswer(selectedButton)
-    // add 1 to the current selection to rotate to the next question
-    currentQuestionIndex++
-    // verify the current question that we're on 
-    setTimeout(function () {
-        if (shuffledQuestions.length > currentQuestionIndex + 1) {
-            displayNextQuestion()
-        } else {
-            startButton.innertext = "Restart"
-            startButton.classList.remove('hide')
-        }
-    }, 1000)
-}
-
-//set class to correct dependent on question boolean if not correct, then false
-//This section also loops to the CS hue values for button backgrounds to reveal correct answer or wrong answers
-function setStatusClass(element, correct) {
-    clearStatusClass(element)
-    if (correct) {
-        element.classList.add('correct')
-    } else {
-        //Grab current time and subtract 10 to reinsert
-
-        let currenttime = parseInt(timer.textContent)
-        secondsLeft = currenttime - 10
-        element.classList.add('wrong')
-    }
-
-}
-
 //Remove the status from the button after selection for the new questions
 
 function resetState() {
