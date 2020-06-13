@@ -19,7 +19,7 @@ The challenge for the user is to enter in the most correct answers, in the short
 
 #Validation Link
 ----
-https://validator.w3.org/nu/?showsource=yes&showoutline=yes&showimagereport=yes&doc=https%3A%2F%2Fgithub.com%2FTheWintersFox%2FJavaScriptCodeQuiz
+https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fthewintersfox.github.io%2FJavaScriptCodeQuiz%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en
 
 #Reference's
 ----
