@@ -1,9 +1,9 @@
 //HTML elements
-const startButton = document.getElementById('startBtn')
-const questionContainerElement = document.getElementById('question-container')
-const questionElement = document.getElementById('question')
-const answerButtonsElement = document.getElementById('answer-buttons')
-const h1TextElement = document.getElementById('H1')
+const startButton = document.getElementById('startBtn');
+const questionContainerElement = document.getElementById('question-container');
+const questionElement = document.getElementById('question');
+const answerButtonsElement = document.getElementById('answer-buttons');
+const h1TextElement = document.getElementById('H1');
 
 
 //Random Shuffling of questions
@@ -23,8 +23,7 @@ const questions = [{
         'Firebolt',
     ],
     correctAnswer: 'Nimbus 2000',
-},
-{
+}, {
     question: 'How does Harry manage to breathe underwater during the second task of the Triwizard Tournament?',
     answers: [
         'He transfigures into a shark',
@@ -33,8 +32,7 @@ const questions = [{
         'He performs a bubble-head charm',
     ],
     correctAnswer: 'He eats gillyweed'
-},
-{
+}, {
     question: 'What is the name of Fred and George’s joke shop?',
     answers: [
         'Weasley Joke Emporium',
@@ -43,8 +41,7 @@ const questions = [{
         'Zonkos Joke Shop'
     ],
     correctAnswer: 'Weasleys Wizard Wheezes',
-},
-{
+}, {
     question: 'Which of these is NOT one of the Unforgivable Curses?',
     answers: [
         'Cruciatus Curse',
@@ -53,8 +50,7 @@ const questions = [{
         'Avada Kedavra',
     ],
     correctAnswer: 'Sectumsempra',
-},
-{
+}, {
     question: 'Where does Hermione brew her first batch of Polyjuice Potion?',
     answers: [
         'Moaning Myrtle’s Bathroom',
@@ -64,12 +60,11 @@ const questions = [{
 
     ],
     correctAnswer: 'Moaning Myrtle’s Bathroom',
-},
-];
+}, ];
 
 
 //START BUTTON
-startButton.addEventListener('click', function (event) {
+startButton.addEventListener('click', function(event) {
     //   currentQuestionIndex++;
     event.preventDefault();
 
@@ -122,8 +117,8 @@ function startGame() {
 }
 
 function displayNextQuestion() {
-    resetState()
-    showQuestion(shuffledQuestions[currentQuestionIndex])
+    resetState();
+    showQuestion(shuffledQuestions[currentQuestionIndex]);
 
 }
 
@@ -132,15 +127,15 @@ function displayNextQuestion() {
 function showQuestion(question) {
     questionElement.innerText = question.question;
     question.answers.forEach(answer => {
-        const button = document.createElement('button')
-        button.innerText = answer
-        button.classList.add('btn')
+        const button = document.createElement('button');
+        button.innerText = answer;
+        button.classList.add('btn');
         // if (answer.correct) {
         //     button.dataset.correct = answer.correct
         // }
         //  button.onclick = setStatusClass;
-        button.addEventListener('click', selectAnswer)
-        answerButtonsElement.appendChild(button)
+        button.addEventListener('click', selectAnswer);
+        answerButtonsElement.appendChild(button);
     })
 }
 
@@ -152,28 +147,28 @@ function showQuestion(question) {
 
 //Selection function
 function selectAnswer(e) {
-    const selectedButton = e.target.innerText
-    console.log(selectedButton)
+    const selectedButton = e.target.innerText;
+    console.log(selectedButton);
 
-    checkAnswer(selectedButton)
+    checkAnswer(selectedButton);
     // add 1 to the current selection to rotate to the next question
-    currentQuestionIndex++
+    currentQuestionIndex++;
     // verify the current question that we're on 
-    setTimeout(function () {
+    setTimeout(function() {
         if (shuffledQuestions.length > currentQuestionIndex) {
-            displayNextQuestion()
+            displayNextQuestion();
         } else {
-            startButton.classList.remove('hide')
+            startButton.classList.remove('hide');
         }
-    }, 1000)
+    }, 1000);
 }
 
 //set class to correct dependent on question boolean if not correct, then false
 //This section also loops to the CS hue values for button backgrounds to reveal correct answer or wrong answers
 function setStatusClass(element, correct) {
-    clearStatusClass(element)
+    clearStatusClass(element);
     if (correct) {
-        element.classList.add('correct')
+        element.classList.add('correct');
     } else {
         //Grab current time and subtract 10 to reinsert
 
@@ -186,9 +181,9 @@ function setStatusClass(element, correct) {
 
 //This will check the selected choice then display correct or incorrect below the answers area.
 function checkAnswer(response) {
-    console.log(response)
+    console.log(response);
     if (response !== questions[currentQuestionIndex].correctAnswer) {
-        console.log("WRONG")
+        console.log("WRONG");
         checkAnswerDisplay.textContent = "Incorrect";
         checkAnswerDisplay.style.textAlign = "center";
         checkAnswerDisplay.style.backgroundColor = "red";
@@ -202,11 +197,12 @@ function checkAnswer(response) {
             endQuiz();
         }
     } else {
-        console.log("CORRECT")
+        console.log("CORRECT");
         checkAnswerDisplay.textContent = "Correct";
         checkAnswerDisplay.style.textAlign = "center";
         checkAnswerDisplay.style.backgroundColor = "green";
         checkAnswerDisplay.style.color = "white";
+
         answerCheck.appendChild(checkAnswerDisplay);
     }
 }
@@ -214,7 +210,7 @@ function checkAnswer(response) {
 
 function resetState() {
     while (answerButtonsElement.firstChild) {
-        answerButtonsElement.removeChild(answerButtonsElement.firstChild)
+        answerButtonsElement.removeChild(answerButtonsElement.firstChild);
     }
 }
 

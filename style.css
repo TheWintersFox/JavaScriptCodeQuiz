@@ -86,6 +86,8 @@ body {
 }
 
 h1 {
-    text-align: auto;
     align-content: auto;
+    word-wrap: normal;
+    text-shadow: slategrey;
+    text-rendering: optimizeSpeed;
 }
