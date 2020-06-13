@@ -12,6 +12,7 @@ let secondsLeft = 75;
 let currentQuestionIndex = 0;
 let checkAnswerDisplay = document.createElement('p');
 
+
 // Questions Array
 const questions = [{
     question: 'What is the model of the first broom Harry ever receives?',
@@ -185,7 +186,7 @@ function selectAnswer(e) {
     currentQuestionIndex++
     // verify the current question that we're on 
     setTimeout(function () {
-        if (shuffledQuestions.length > currentQuestionIndex) {
+        if (shuffledQuestions.length > currentQuestionIndex + 1) {
             displayNextQuestion()
         } else {
             startButton.innertext = "Restart"
