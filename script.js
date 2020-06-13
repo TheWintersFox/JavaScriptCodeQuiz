@@ -16,9 +16,9 @@ let user = [];
 let scoreArray = localStorage.getItem('highscore');
 if (scoreArray) {
     scoreArray = JSON.parse(scoreArray);
-    // else {
-    //     scoreArray = [];
-    // }
+    else {
+        scoreArray = [];
+    }
 }
 
 
