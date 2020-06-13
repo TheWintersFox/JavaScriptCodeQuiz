@@ -86,8 +86,6 @@ body {
 }
 
 h1 {
-    align-content: auto;
-    word-wrap: normal;
-    text-shadow: slategrey;
     text-rendering: optimizeSpeed;
+    word-wrap: break-word;
 }
