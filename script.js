@@ -1,31 +1,28 @@
 //HTML elements
 const startButton = document.getElementById('startBtn');
-const questionContainerElement = document.getElementById('questionContainer');
+const questionContainerElement = document.getElementById('question-container');
 const questionElement = document.getElementById('question');
 const answerButtonsElement = document.getElementById('answer-buttons');
 const h1TextElement = document.getElementById('H1');
 
-
-
+// Global variables
 let shuffledQuestions; //Random Shuffling of questions
-
 let logScore = " ";
 let highscore = [];
 let username = " ";
 let user = [];
 let scoreArray = localStorage.getItem('highscore');
+
 if (scoreArray) {
     scoreArray = JSON.parse(scoreArray);
-    // else {
-    //     scoreArray = [];
-    // }
+} else {
+    scoreArray = [];
 }
-
-
 let secondsLeft = 75; //Starting time
-let currentQuestionIndex = 0; // Starting index at 0
-let checkAnswerDisplay = document.createElement('p');
 
+let currentQuestionIndex = 0; // Starting index at 0
+
+let checkAnswerDisplay = document.createElement('p');
 
 // Questions Array
 const questions = [{
@@ -47,7 +44,7 @@ const questions = [{
     ],
     correctAnswer: 'He eats gillyweed'
 }, {
-    question: 'What is the name of Fred and George’s joke shop?',
+    question: 'What is the name of Fred and Georges joke shop ? ',
     answers: [
         'Weasley Joke Emporium',
         'Weasleys Wizard Wheezes',
@@ -67,18 +64,17 @@ const questions = [{
 }, {
     question: 'Where does Hermione brew her first batch of Polyjuice Potion?',
     answers: [
-        'Moaning Myrtle’s Bathroom',
+        'Moaning Myrtles Bathroom ',
         'The Hogwarts Kitchen',
         'The Room of Requirement',
         'The Gryffindor Common Room',
-
     ],
-    correctAnswer: 'Moaning Myrtle’s Bathroom',
+    correctAnswer: 'Moaning Myrtles Bathroom ',
 }, ];
-
 
 //START BUTTON
 startButton.addEventListener('click', function(event) {
+
     //   currentQuestionIndex++;
     event.preventDefault();
 
@@ -92,26 +88,20 @@ startButton.addEventListener('click', function(event) {
     startGame();
 
     //Allow next Question after initial choice
-    // displayNextQuestion()
-
+    displayNextQuestion()
 });
 
 // TIMER FOR THE QUIZ
-
 var timer = document.querySelector("#time");
 
 //TIMER FUNCTION
 function time() {
-
     secondsLeft--;
-
     if (secondsLeft <= 0) {
         secondsLeft = 0;
     }
-
     timer.textContent = secondsLeft;
 };
-
 
 //START TIMER FUNCTION
 function startTimer() {
@@ -124,7 +114,6 @@ function stopTimer() {
     timer.timerContent = '';
 }
 
-
 //Start Game Function w/ Question array random shuffle
 function startGame() {
     startButton.classList.add('hide');
@@ -133,15 +122,12 @@ function startGame() {
     questionContainerElement.classList.remove('hide');
     h1TextElement.innerText = "";
     displayNextQuestion()
-
 }
 
 function displayNextQuestion() {
     resetState();
     showQuestion(shuffledQuestions[currentQuestionIndex]);
-
 }
-
 
 // Show question w/ a create element for each question
 function showQuestion(question) {
@@ -150,10 +136,11 @@ function showQuestion(question) {
         const button = document.createElement('button');
         button.innerText = answer;
         button.classList.add('btn');
-        if (answer.correct) {
-            button.dataset.correct = answer.correct
-        }
-        button.onclick = setStatusClass;
+
+        // if (answer.correct) {
+        //     button.dataset.correct = answer.correct
+        // }
+        //  button.onclick = setStatusClass;
         button.addEventListener('click', selectAnswer);
         answerButtonsElement.appendChild(button);
     })
@@ -163,10 +150,11 @@ function showQuestion(question) {
 function selectAnswer(e) {
     const selectedButton = e.target.innerText;
     console.log(selectedButton);
-
     checkAnswer(selectedButton);
+
     // add 1 to the current selection to rotate to the next question
     currentQuestionIndex++;
+
     // verify the current question that we're on 
     setTimeout(function() {
         if (shuffledQuestions.length > currentQuestionIndex) {
@@ -178,14 +166,15 @@ function selectAnswer(e) {
 }
 
 //set class to correct dependent on question boolean if not correct, then false
+
 //This section also loops to the CS hue values for button backgrounds to reveal correct answer or wrong answers
 function setStatusClass(element, correct) {
     clearStatusClass(element);
     if (correct) {
         element.classList.add('correct');
     } else {
-        //Grab current time and subtract 10 to reinsert
 
+        //Grab current time and subtract 10 to reinsert
         let currenttime = parseInt(timer.textContent)
         secondsLeft = currenttime - 10
         element.classList.add('wrong')
@@ -195,7 +184,7 @@ function setStatusClass(element, correct) {
 //This will check the selected choice then display correct or incorrect below the answers area.
 function checkAnswer(response) {
     console.log(response);
-    if (response !== questions[currentQuestionIndex]) {
+    if (response !== questions[currentQuestionIndex].correctAnswer) {
         console.log("WRONG");
         checkAnswerDisplay.textContent = "Incorrect";
         checkAnswerDisplay.style.textAlign = "center";
@@ -205,39 +194,37 @@ function checkAnswer(response) {
         secondsLeft = secondsLeft - 10; //Time deduction
         console.log(secondsLeft); //Test
         timer.textContent = secondsLeft;
-        if (secondsLeft <= 0) {
-            secondsLeft = 0;
-            endQuiz();
-        }
     } else {
         console.log("CORRECT");
         checkAnswerDisplay.textContent = "Correct";
         checkAnswerDisplay.style.textAlign = "center";
         checkAnswerDisplay.style.backgroundColor = "green";
         checkAnswerDisplay.style.color = "white";
-
         answerCheck.appendChild(checkAnswerDisplay);
+    }
+    if (secondsLeft <= 0 || shuffledQuestions.length - 1 === currentQuestionIndex) {
+        endQuiz();
     }
 }
 
 //Remove the status from the button after selection for the new questions
-
 function resetState() {
     while (answerButtonsElement.firstChild) {
         answerButtonsElement.removeChild(answerButtonsElement.firstChild);
     }
 }
 
-// EndQUIZ WIP
+// EndQUIZ Function
 function endQuiz() {
+
     //Function stops timer once time is logged as the score.
     stopTimer();
 
     /* Hide quiz instructions and start button as well as the questions and answers 
     - including the incorrect or correct display at the buttom of the page*/
-    startQuizz.style.display = "none";
-    questionContainer.style.display = "none";
+    questionContainerElement.style.display = "none";
     answerCheck.style.display = "none";
+
 
     //HIGHSCORE LOCAL VARIABLES
     /*Description: Variables needed in order to collect and store highscores. Creates Initial Input Display.*/
@@ -251,17 +238,17 @@ function endQuiz() {
     initialsInputLabel.className += "mr-1"
     const initialsInput = document.createElement("INPUT");
     initialsInput.setAttribute("type", "text");
-    initialsInput.setAttribute("value", "SLH");
+    initialsInput.setAttribute("value", "Example: LJE");
     const submitButton = document.createElement("button");
     submitButton.innerHTML = "Submit";
     submitButton.className += "btn btn-primary ml-1";
+
 
     //SUBMIT HIGHSCORE
     /*Description: Upon clicking the submit button, the username and score is saved 
     to the localStorage and displayed under Highscores (which can also be accessed by pressing the
     'View Highscores' button shown below). */
-    submitButton.onclick = function(event) {
-        event.preventDefault;
+    submitButton.onclick = function() {
         //Prompt for initials to collect username for localStorage
         let userName = initialsInput.value;
         console.log(userName);
@@ -273,6 +260,8 @@ function endQuiz() {
             localStorage.setItem('highscore', JSON.stringify(scoreArray))
                 // scoreArray = [{ user: userName, score: score },  { user: userName, score: score }]
         }
+
+
         //STORE USER
         // function storeUser() {
         //   localStorage.setItem("user", JSON.stringify(userName));
@@ -286,7 +275,6 @@ function endQuiz() {
         //Function creates input area
         highscoresDisplay();
     };
-
     //Displays Highscore Input Area in HTML
     highscoreInputHeader.appendChild(highscoreInputHeaderText);
     highscoreContent.appendChild(highscoreInputHeader);
@@ -294,8 +282,8 @@ function endQuiz() {
     highscoreContent.appendChild(initialsInputLabel);
     highscoreContent.appendChild(initialsInput);
     highscoreContent.appendChild(submitButton);
-
 }
+
 
 //VIEW HIGHSCORE BUTTON
 const highscoreButton = document.getElementById("highscorebtn");
@@ -306,11 +294,12 @@ highscoreButton.onclick = function(event) {
     highscoresDisplay();
 };
 
+
 //HIGHSCORE DISPLAY FUNCTION
 /*Inputs are displayed after inputs are collected. Intials and highscore displayed. Score displayed is equivalent to 
 the seconds left on the timer when the quiz ends. */
 function highscoresDisplay() {
-
+    highscoreContent.style.display = "none";
     //Creates "Highscore" Header and collects data for localStorage
     const highscoreHeader = document.createElement("h1");
     const highscoreHeaderText = document.createTextNode("Highscores");
@@ -336,7 +325,6 @@ function highscoresDisplay() {
         event.preventDefault;
         window.location.reload();
     };
-
     //CLEAR BUTTON
     const clearButton = document.createElement("button");
     clearButton.innerHTML = "Clear Highscore";
@@ -345,13 +333,10 @@ function highscoresDisplay() {
         event.preventDefault;
         window.localStorage.clear();
         highscoreList.innerHTML = '';
-
     };
-
     //Displays highscore information
     highscoreDisplay.appendChild(goBackButton);
     highscoreDisplay.appendChild(clearButton);
-
     //Disable View Highscore Button
     highscoreButton.disabled = true;
 }
