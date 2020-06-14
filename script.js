@@ -1,4 +1,4 @@
-// jshint esversion: 6
+/*jshint esversion: 6*/
 
 
 //HTML elements
@@ -236,7 +236,7 @@ function endQuiz() {
     initialsInputLabel.className += "mr-1";
     const initialsInput = document.createElement("INPUT");
     initialsInput.setAttribute("type", "text");
-    initialsInput.setAttribute("value", "Example: LJE");
+    initialsInput.setAttribute("value", "LJE");
     const submitButton = document.createElement("button");
     submitButton.innerHTML = "Submit";
     submitButton.className += "btn btn-primary ml-1";
