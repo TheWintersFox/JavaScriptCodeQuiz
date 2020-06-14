@@ -1,3 +1,6 @@
+// jshint esversion: 6
+
+
 //HTML elements
 const startButton = document.getElementById('startBtn');
 const questionContainerElement = document.getElementById('question-container');
@@ -121,7 +124,7 @@ function startGame() {
     currentQuestionIndex = 0;
     questionContainerElement.classList.remove('hide');
     h1TextElement.innerText = "";
-    displayNextQuestion()
+    displayNextQuestion();
 }
 
 function displayNextQuestion() {
@@ -136,14 +139,9 @@ function showQuestion(question) {
         const button = document.createElement('button');
         button.innerText = answer;
         button.classList.add('btn');
-
-        // if (answer.correct) {
-        //     button.dataset.correct = answer.correct
-        // }
-        //  button.onclick = setStatusClass;
         button.addEventListener('click', selectAnswer);
         answerButtonsElement.appendChild(button);
-    })
+    });
 }
 
 //Selection function
@@ -235,7 +233,7 @@ function endQuiz() {
     scoreDisplay.textContent = "Your final score is " + score + ".";
     const initialsInputLabel = document.createElement("LABEL");
     initialsInputLabel.textContent = "Enter initials: ";
-    initialsInputLabel.className += "mr-1"
+    initialsInputLabel.className += "mr-1";
     const initialsInput = document.createElement("INPUT");
     initialsInput.setAttribute("type", "text");
     initialsInput.setAttribute("value", "Example: LJE");
@@ -257,8 +255,8 @@ function endQuiz() {
             //localStorage.getItem('highscore')
             // if the above is a value (scoreArray) push new object ie. { user: userName, score: score }
             scoreArray.push({ user: userName, score: score });
-            localStorage.setItem('highscore', JSON.stringify(scoreArray))
-                // scoreArray = [{ user: userName, score: score },  { user: userName, score: score }]
+            localStorage.setItem('highscore', JSON.stringify(scoreArray));
+            // scoreArray = [{ user: userName, score: score },  { user: userName, score: score }]
         }
 
 
@@ -315,7 +313,7 @@ function highscoresDisplay() {
         );
         highscoreLatest.appendChild(highscoreLatestText);
         highscoreList.appendChild(highscoreLatest);
-    };
+    }
     highscoreDisplay.appendChild(highscoreList);
     //GO BACK BUTTON
     const goBackButton = document.createElement("button");
@@ -334,9 +332,11 @@ function highscoresDisplay() {
         window.localStorage.clear();
         highscoreList.innerHTML = '';
     };
+
     //Displays highscore information
     highscoreDisplay.appendChild(goBackButton);
     highscoreDisplay.appendChild(clearButton);
+
     //Disable View Highscore Button
     highscoreButton.disabled = true;
 }
