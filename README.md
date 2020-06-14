@@ -13,7 +13,9 @@ The challenge for the user is to enter in the most correct answers, in the short
  
  The highscore sheet uses local web storage API whilst using javascript to achieve this.  Subtract time when submitting wrong answers. 
 
-![Deployed Application Screenshot](./assets/images/harrypotter.png)
+![Deployed Application Screenshot](./assets/images/gifofquiz.gif)
+
+![Client Comparison](./assets/images/clientcomparison.gif)
 
 -------
 
