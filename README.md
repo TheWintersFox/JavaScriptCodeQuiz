@@ -6,7 +6,8 @@ The challenge for the user is to enter in the most correct answers, in the short
  
  The highscore sheet uses local web storage API whilst using javascript to achieve this.  Subtract time when submitting wrong answers. 
 
-
+Client Comparison GIF
+---
 ![Client Comparison](./assets/images/clientcomparison.gif)
 
 
@@ -19,6 +20,9 @@ https://github.com/TheWintersFox/JavaScriptCodeQuiz
 
 https://thewintersfox.github.io/JavaScriptCodeQuiz/
 
+
+The Deployed Application GIF
+---
 ![Deployed Application Screenshot](./assets/images/gifofquiz.gif)
 
 -------
